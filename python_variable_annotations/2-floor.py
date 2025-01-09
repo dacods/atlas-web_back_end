@@ -4,4 +4,4 @@
 
 def floor(n: float) -> int:
     "Take float n and retrun floor of n"
-    return floor(n)
+    return n
