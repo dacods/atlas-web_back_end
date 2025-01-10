@@ -4,5 +4,4 @@
 
 def to_str(n: float) -> str:
     "Coverts float to string"
-    new = format(n, 'f')
-    return new
+    return str(n)
