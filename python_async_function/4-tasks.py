@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Altering old function to new function
 """
