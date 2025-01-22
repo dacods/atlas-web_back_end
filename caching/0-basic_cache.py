@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-
+A class that Inherits a caching system
 """
 from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
     """
-    
+    Return cache data
     """
     def put(self, key, item):
         if key is None or item is None:
