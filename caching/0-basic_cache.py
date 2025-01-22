@@ -7,7 +7,7 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """
-    Return cache data
+    Returns the cache data
     """
     def put(self, key, item):
         if key is None or item is None:
