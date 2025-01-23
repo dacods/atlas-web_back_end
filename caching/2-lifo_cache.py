@@ -22,7 +22,7 @@ class LIFOCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        
+
         if key in self.cache_data:
             del self.cache_data[key]
 
@@ -32,7 +32,7 @@ class LIFOCache(BaseCaching):
             del self.cache_data[self.last]
             print(f'DISCARD: {self.last}')
 
-        self.last = key        
+        self.last = key
 
     def get(self, key):
         """
