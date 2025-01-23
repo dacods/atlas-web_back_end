@@ -7,7 +7,7 @@ from base_caching import BaseCaching
 
 class LRUCache(BaseCaching):
     """
-    Inherits from BaseCaching and implements LIFO caching
+    Inherits from BaseCaching and implements LRU caching
     """
     def __init__(self):
         """
