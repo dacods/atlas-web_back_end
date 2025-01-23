@@ -32,7 +32,7 @@ class MRUCache(BaseCaching):
             print(f'DISCARD: {MRU_key}')
 
         self.cache_data[key] = item
-        self.order.append(key)        
+        self.order.append(key)
 
     def get(self, key):
         """
