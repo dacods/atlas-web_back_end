@@ -73,3 +73,29 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=db_name
     )
     return connection
+
+
+def main():
+    """
+    Main function to retrieve and log user data from the database
+    with filtered sensitive information.
+    """
+
+    logger = get_logger()
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM users;")
+    col_names = [col[0] for col in cursor.description]
+
+    for row in cursor.fetchall():
+        row_data = {col_names[i]: row[i] for i in range(len(col_names))}
+        message = "; ".join(f"{key}={value}" for key, value in row_data.items())
+        logger.info(message)
+    
+    cursor.close()
+    db.close()
+
+if __name__ == "__main__":
+    main()
