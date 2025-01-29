@@ -18,7 +18,7 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def hash_password(self, password: str) -> bytes:
+    def _hash_password(self, password: str) -> bytes:
         """
         Hashes a password using bcrypt with a generated salt.
         """
