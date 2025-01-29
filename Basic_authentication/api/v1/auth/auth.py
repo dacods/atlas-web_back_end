@@ -20,7 +20,7 @@ class Auth():
         """
         Retrieves the authorization header from the request.
         """
-        return None    
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
