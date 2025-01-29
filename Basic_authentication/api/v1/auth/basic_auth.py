@@ -78,7 +78,7 @@ class BasicAuth(Auth):
             users = User.search({"email": user_email})
         except KeyError:
             return None
-        
+
         if not users or len(users) == 0:
             return None
 
