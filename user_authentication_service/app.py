@@ -30,7 +30,7 @@ def users() -> str:
 
     if not email or not password:
         return jsonify({"message": "Missing email or password"}), 400
-    
+
     try:
         user = AUTH.register_user(email, password)
         return jsonify({"email": user.email, "message": "user created"}), 200
