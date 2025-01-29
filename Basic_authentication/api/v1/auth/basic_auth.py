@@ -4,6 +4,7 @@ API authntication
 """
 from api.v1.auth.auth import Auth
 import base64
+import binascii
 
 
 class BasicAuth(Auth):
@@ -41,3 +42,21 @@ class BasicAuth(Auth):
             return decoded_bytes.decode('utf-8')
         except (base64.binascii.Error, UnicodeDecodeError):
             return None
+
+    def extract_user_credentials(self,
+                                 decoded_base64_authorization_header:
+                                 str) -> (str, str):
+        """
+        Extracts the user email and password from the decoded
+        Base64 value.
+        """
+        if decoded_base64_authorization_header is None or not isinstance(
+                                    decoded_base64_authorization_header,
+                                    str):
+            return None, None
+
+        if ":" not in decoded_base64_authorization_header:
+            return None, None
+
+        email, password = decoded_base64_authorization_header.split(":", 1)
+        return email, password
