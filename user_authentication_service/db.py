@@ -64,5 +64,5 @@ class DB:
             if not hasattr(user, key):
                 raise ValueError(f"Invalid attribute: {key}")
             setattr(user, key, value)
-        
+
         session.commit()
