@@ -63,3 +63,14 @@ class TestGithubOrgClient(unittest.TestCase):
         ) as mock_public_repos_url:
             mock_public_repos_url.return_value = \
                 "https://test.url/repos"
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        """
+        
+        """
+        result = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(result, expected)
