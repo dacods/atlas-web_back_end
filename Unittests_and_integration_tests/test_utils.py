@@ -12,7 +12,7 @@ from utils import memoize
 
 class TestAccessNestedMap(unittest.TestCase):
     """
-    
+    Test for access_nested_map
     """
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -31,7 +31,7 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map_exception(self, nested_map, path, expected):
         """
-        Test for expected result
+        Test KeyError handling
         """
         with self.assertRaises(KeyError) as context:
             access_nested_map(nested_map, path)
@@ -40,7 +40,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 class TestGetJson(unittest.TestCase):
     """
-    
+    Test for get_json
     """
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
@@ -48,7 +48,7 @@ class TestGetJson(unittest.TestCase):
     ])
     def test_get_json(self, test_url, test_payload):
         """
-        
+        Test that get_json returns expected payload
         """
         with patch("requests.get") as mock_get:
             mock_response = Mock()
@@ -63,9 +63,12 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """
-    
+    Test for the memoize decorator
     """
     def test_memoize(self):
+        """
+        Test that memoize chaches the result after the first call
+        """
         class TestClass:
             def a_method(self):
                 return 42
@@ -76,7 +79,8 @@ class TestMemoize(unittest.TestCase):
 
         test_instance = TestClass()
 
-        with patch.object(test_instance, 'a_method', return_value=42) as mock_method:
+        with patch.object(test_instance, 'a_method',
+                          return_value=42) as mock_method:
             result1 = test_instance.a_property
 
             result2 = test_instance.a_property
