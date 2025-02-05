@@ -54,7 +54,7 @@ class TestGetJson(unittest.TestCase):
             mock_response = Mock()
             mock_response.json.return_value = test_payload
             mock_get.return_value = mock_response
-        
+
             result = get_json(test_url)
 
             mock_get.assert_called_once_with(test_url)
