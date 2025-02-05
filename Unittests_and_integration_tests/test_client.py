@@ -10,7 +10,7 @@ from client import GithubOrgClient
 
 class TestGithubOrgClient(unittest.TestCase):
     """
-    
+    Test for GithubOrgClient
     """
     @parameterized.expand([
         ("google",),
@@ -19,7 +19,7 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch("client.get_json")
     def test_org(self, org_name, mock_get_json):
         """
-        
+        Test that GithubOrgClient.org returns the expected value
         """
         test_client = GithubOrgClient(org_name)
         mock_get_json.return_value = {"org": org_name}
@@ -32,7 +32,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_url(self):
         """
-        
+        Testing for expected url
         """
         mock_payload = {"repos_url": "https://website.url"}
 
@@ -49,7 +49,7 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch("client.get_json")
     def test_public_repos(self, mock_get_json):
         """
-            
+        Testing for expected repo list
         """
         mock_repos = [
             {"name": "repo1"},
@@ -62,4 +62,4 @@ class TestGithubOrgClient(unittest.TestCase):
             new_callable=PropertyMock
         ) as mock_public_repos_url:
             mock_public_repos_url.return_value = \
-            "https://test.url/repos"
+                "https://test.url/repos"
