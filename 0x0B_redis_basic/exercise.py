@@ -41,11 +41,11 @@ def replay(method: Callable) -> None:
     """
     redis_instance = method.__self__._redis
 
-    input_key = f"{method.__qualname__}:inputs"
-    output_key = f"{method.__qualname__}:outputs"
+    inputs_key = f"{method.__qualname__}:inputs"
+    outputs_key = f"{method.__qualname__}:outputs"
 
-    inputs = self._redis.lrange(input_key, 0, -1)
-    outputs = self._redis.lrange(output_key, 0, -1)
+    inputs = redis.lrange(input_key, 0, -1)
+    outputs = redis.lrange(output_key, 0, -1)
 
     call_count = redis_instance.get(method.__qualname__).decode("utf-8")
 
