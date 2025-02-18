@@ -1,0 +1,1 @@
+This repo is going over Redis basic
