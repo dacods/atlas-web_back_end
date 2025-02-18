@@ -44,14 +44,14 @@ def replay(method: Callable) -> None:
     inputs_key = f"{method.__qualname__}:inputs"
     outputs_key = f"{method.__qualname__}:outputs"
 
-    inputs = redis_instace.lrange(input_key, 0, -1)
-    outputs = redis_instace.lrange(output_key, 0, -1)
+    inputs = redis_instance.lrange(inputs_key, 0, -1)
+    outputs = redis_instance.lrange(outputs_key, 0, -1)
 
     call_count = redis_instance.get(method.__qualname__).decode("utf-8")
 
     print(f"{method.__qualname__} was called {call_count} times:")
     for input_data, output_data in zip(inputs, outputs):
-        printf(f"{method.__qualname__}(*{input_data.decode('utf-8')}) -> {output_data.decode('utf-8')}")
+        print(f"{method.__qualname__}(*{input_data.decode('utf-8')}) -> {output_data.decode('utf-8')}")
 
 class Cache:
     """
