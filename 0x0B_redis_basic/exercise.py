@@ -35,7 +35,7 @@ def call_history(method: Callable) -> Callable:
         return output
     return wrapper
 
-def replay(self, method: Callable) -> None:
+def replay(method: Callable) -> None:
     """
     
     """
