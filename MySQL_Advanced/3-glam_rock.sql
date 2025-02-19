@@ -2,7 +2,7 @@
 -- Ranked by their longevity
 SELECT
     band_name,
-    COALESCE(split, YEAR(CURDATE())) - formed AS lifespan
+    COALESCE(split, EXTRACT(YEAR FROM CURRENT_DATE)) - COALESCE(formed, 0) AS lifespan
 FROM metal_bands
 WHERE style LIKE '%Glam rock%'
 ORDER BY lifespan DESC;
