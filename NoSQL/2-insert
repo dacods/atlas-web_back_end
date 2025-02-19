@@ -1,0 +1,2 @@
+// Script that inserts a document in the collection
+debugger.school.insert({ name: "Holberton school" })
