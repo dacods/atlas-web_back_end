@@ -19,6 +19,7 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """
     store history of method input and output
@@ -34,6 +35,7 @@ def call_history(method: Callable) -> Callable:
 
         return output
     return wrapper
+
 
 def replay(method: Callable) -> None:
     """
@@ -52,7 +54,8 @@ def replay(method: Callable) -> None:
     print(f"{method.__qualname__} was called {call_count} times:")
     for input_data, output_data in zip(inputs, outputs):
         print(f"{method.__qualname__}(*{input_data.decode('utf-8')}) -> "
-            f"{output_data.decode('utf-8')}")
+              f"{output_data.decode('utf-8')}")
+
 
 class Cache:
     """
@@ -73,7 +76,7 @@ class Cache:
         return key
 
     def get(self, key: str, fn: Optional[Callable] = None) -> \
-                            Union[bytes, str, int, float, None]:
+            Union[bytes, str, int, float, None]:
         """
         retrieve data from redis
         """
@@ -90,7 +93,7 @@ class Cache:
         """
         return self.get(key, lambda v: v.decode('utf-8'))
 
-    def get_int(self, key:str) -> Optional[int]:
+    def get_int(self, key: str) -> Optional[int]:
         """
         retrieve int from redis
         """
