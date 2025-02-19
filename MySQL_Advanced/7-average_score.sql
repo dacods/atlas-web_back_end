@@ -13,8 +13,8 @@ BEGIN
     WHERE user_id = p_user_id;
 
     UPDATE users
-    SET average_scores = avg_score
+    SET average_score = avg_score
     WHERE id = p_user_id;
 END $$
 
-DELIMITER ;
+DELIMITER;
