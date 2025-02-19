@@ -17,4 +17,4 @@ BEGIN
     WHERE id = p_user_id;
 END $$
 
-DELIMITER;
+DELIMITER ;
