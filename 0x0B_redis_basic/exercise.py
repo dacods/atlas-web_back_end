@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-
+Redis basic module
 """
 import redis
 import uuid
@@ -10,7 +10,7 @@ from typing import Union, Callable, Optional
 
 def count_calls(method: Callable) -> Callable:
     """
-    
+    Count method calls
     """
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
@@ -21,7 +21,7 @@ def count_calls(method: Callable) -> Callable:
 
 def call_history(method: Callable) -> Callable:
     """
-    
+    store history of method input and output
     """
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
@@ -37,7 +37,7 @@ def call_history(method: Callable) -> Callable:
 
 def replay(method: Callable) -> None:
     """
-    
+    show history of calls
     """
     redis_instance = method.__self__._redis
 
@@ -51,31 +51,26 @@ def replay(method: Callable) -> None:
 
     print(f"{method.__qualname__} was called {call_count} times:")
     for input_data, output_data in zip(inputs, outputs):
-        print(f"{method.__qualname__}(*{input_data.decode('utf-8')}) -> {output_data.decode('utf-8')}")
+        print(f"{method.__qualname__}(*{input_data.decode('utf-8')}) -> "
+            f"{output_data.decode('utf-8')}")
 
 class Cache:
     """
-    
+    Cache class
     """
     def __init__(self) -> None:
-        """"""
         self._redis = redis.Redis()
         self._redis.flushdb()
 
     @count_calls
     @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
-        """
-        
-        """
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[bytes, str, int, float, None]:
-        """
-        
-        """
+    def get(self, key: str, fn: Optional[Callable] = None) -> 
+                            Union[bytes, str, int, float, None]:
         value = self._redis.get(key)
         if value is None:
             return None
@@ -84,13 +79,7 @@ class Cache:
         return value
 
     def get_str(self, key: str) -> Optional[str]:
-        """
-        
-        """
         return self.get(key, lambda v: v.decode('utf-8'))
 
     def get_int(self, key:str) -> Optional[int]:
-        """
-        
-        """
         return self.get(key, lambda v: int(v))
