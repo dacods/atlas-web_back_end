@@ -1,0 +1,14 @@
+{
+  "name": "unittests_in_js",
+  "version": "1.0.0",
+  "description": "In this repo I will be going over Unittests in JS",
+  "main": "0-calcul.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
