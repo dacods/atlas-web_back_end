@@ -24,8 +24,11 @@ describe('Cart page', () => {
         request(`${url}/cart/5`, (error, response, body) => {
             expect(response && response.statusCode).to.equal(200);
             expect(body).to.equal('Payment methods for cart 5');
+            done();
         });
     });
+
+    
 
     it('should return status code 404 when :id is not a number', (done) => {
         request(`${url}/cart/abc`, (error, response) => {
