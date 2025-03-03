@@ -23,7 +23,7 @@ describe('Cart page', () => {
     it('should return status code 200 when :id is a number', (done) => {
         request(`${url}/cart/5`, (error, response, body) => {
             expect(response && response.statusCode).to.equal(200);
-            expect(body).to.equala('Payment methods for cart 5');
+            expect(body).to.equal('Payment methods for cart 5');
         });
     });
 
