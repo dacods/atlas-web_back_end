@@ -20,7 +20,7 @@ describe('calculateNumber test SUBTRACT', function() {
 describe('calculateNumber test DIVIDE', function() {
     it('should round the arguments and give the quotient', function() {
         expect(calculateNumber('DIVIDE', 4.2, 1.6)).to.equal(2)
-        expect(calculateNumber('DIVIDE', 10.3, 5.3)).to.equal(2)
+        expect(calculateNumber('DIVIDE', 10.3, 0)).to.equal('Error')
         expect(calculateNumber('DIVIDE', 25.3, 5.2)).to.equal(5)
     })
 })
