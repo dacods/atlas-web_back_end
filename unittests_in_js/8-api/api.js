@@ -6,8 +6,10 @@ app.get('/', (req, res) => {
     res.send('Welcome to the payment system');
 });
 
-app.listen(PORT, () => {
-    console.log(`API available on localhost port ${PORT}`);
-});
+if (require.main === module){
+    app.listen(PORT, () => {
+        console.log(`API available on localhost port ${PORT}`);
+    });
+}
 
 module.exports = app;
